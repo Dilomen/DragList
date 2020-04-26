@@ -1,0 +1,11 @@
+.dark-tranmit {
+  opacity: 0.2;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.dark-mirror {
+  opacity: .5;
+}
+
