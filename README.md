@@ -33,12 +33,12 @@ DragList([Element, Element], { isContainer: (ele) => {}) });
 
 > 当鼠标或者手指按下的时候触发
 
-返回按下的元素 el，它的父容器 source，当前事件对象 event，下一个兄弟节点 sibling
+返回按下的元素 currentNode，它的父容器 source，下一个兄弟节点 sibling
 
 ```js
-this.dragula.on("dropstart", (el, source, event, sibling) => {
+this.dragula.on("dropstart", (currentNode, source, sibling) => {
   // 可以通过返回false来禁止mouseup和mousemove事件的绑定
-  return false
+  return false;
 });
 ```
 
@@ -46,7 +46,7 @@ this.dragula.on("dropstart", (el, source, event, sibling) => {
 
 > 当鼠标或者手指按下后的移动时触发
 
-返回按下的元素 el，它的父容器 source，当前事件对象 event，下一个兄弟节点 sibling
+按下的元素 currentNode 和移动中鼠标下的元素 pointNode
 
 ```js
 this.dragula.on("drop", (currentNode, pointNode) => {
@@ -61,10 +61,10 @@ this.dragula.on("drop", (currentNode, pointNode) => {
 
 > 当鼠标或者手指按松开时执行
 
-返回按下的元素 el，移动到的父容器 target，之前的父容器 source，当前移动后的下一个兄弟节点 sibling
+返回按下的元素 currentNode，移动到的父容器 target，之前的父容器 source，当前移动后的下一个兄弟节点 sibling
 
 ```js
-this.dragula.on("drop", (el, target, source, sibling) => {});
+this.dragula.on("drop", (currentNode, target, source, sibling) => {});
 ```
 
 ### Demo
@@ -81,14 +81,14 @@ class DragListShow extends Component {
     let wrap = document.getElementsByClassName("wrap")[0];
     let itemWrap = document.getElementsByClassName("itemWrap")[0];
     this.dragula = DragList([container, wrap, itemWrap], { isCopy: true });
-    this.dragula.on("dropstart", (el, source, event, sibling) => {
+    this.dragula.on("dropstart", (currentNode, source, sibling) => {
       if (...) {
         return false;
       }
-      console.log("el, target, event, sibling", el, source, event, sibling);
+      console.log("currentNode, source, sibling", currentNode, source, sibling);
     });
-    this.dragula.on("drop", (el, target, source, sibling) => {
-      console.log("el, target, source, sibling", el, target, source, sibling);
+    this.dragula.on("drop", (currentNode, target, source, sibling) => {
+      console.log("currentNode, target, source, sibling", currentNode, target, source, sibling);
     });
     this.dragula.on("droping", (currentNode, pointNode) => {
       console.log("currentNode, pointNode", currentNode, pointNode);
@@ -98,4 +98,10 @@ class DragListShow extends Component {
     });
   };
 }
+```
+
+#### destory 销毁
+
+```js
+this.dragula.destory();
 ```

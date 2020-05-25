@@ -82,8 +82,8 @@ function isCopy() {
 // 是否需要复制元素，优先配置方法
 function isContainer(ele) {
   if (
-    config && (config.isContainer === false ||
-    tryFunc(config.isContainer, ele) === false)
+    config &&
+    (config.isContainer === false || tryFunc(config.isContainer, ele) === false)
   ) {
     return false;
   }
@@ -122,7 +122,6 @@ function docMouseDown(e) {
         "dropstart",
         currentNode,
         source,
-        e,
         sibling
       );
       if (isContinue === false) return false;
@@ -199,9 +198,11 @@ async function drag(e) {
   }
   prohibitSelectText();
 
-  async function isContinue () {
+  async function isContinue() {
     if (observer.has("droping")) {
-      let target = pointNode && (isContainer(pointNode) ? pointNode : getParentElement(pointNode));
+      let target =
+        pointNode &&
+        (isContainer(pointNode) ? pointNode : getParentElement(pointNode));
       let isContinueDefultExecute = await observer.emit(
         "droping",
         currentNode,
@@ -219,7 +220,9 @@ async function drag(e) {
 async function drop(e) {
   let dropX = getSite(e).clientX;
   let dropY = getSite(e).clientY;
-  let target = pointNode && (isContainer(pointNode) ? pointNode : getParentElement(pointNode));
+  let target =
+    pointNode &&
+    (isContainer(pointNode) ? pointNode : getParentElement(pointNode));
   let sibling = nextElement(currentNode);
   if (Math.abs(dropY - _startY) > 15 || Math.abs(dropX - _startX) > 15) {
     observer.emit("drop", currentNode, source, target, sibling);
@@ -231,7 +234,6 @@ async function drop(e) {
   }
   clear();
 }
-
 
 function clear() {
   currentNode = null;

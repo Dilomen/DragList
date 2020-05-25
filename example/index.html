@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    li {
+        list-style: none;
+    }
+    .item {
+        min-height: 50px;
+        background: rgb(248, 248, 248);
+        box-shadow: 0 1px 0 0 #eeeeee;
+        border: 1px solid #eaeaea;
+        width: 300px;
+    }
+
+    .container {
+        width: 300px;
+        float: left;
+    }
+
+    .wrap {
+        float: left;
+        width: 300px;
+        margin-left: 30px;
+    }
+
+    .wrap li {
+        background: #333;
+    }
+
+    .itemWrap {
+        width: 300px;
+        min-height: 30px;
+        background: green;
+
+    }
+
+    .itemWrap li {
+        background: red;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <li class="item">container-1</li>
+        <li class="item">container-2</li>
+        <li class="item">container-3</li>
+        <li class="item">container-4</li>
+        <li class="item">container-5</li>
+    </div>
+    <div class="wrap">
+        <li class="item">wrap-1</li>
+        <li class="item">wrap-2</li>
+        <li class="item">wrap-3</li>
+        <li class="item">wrap-4</li>
+        <li class="item">wrap-5</li>
+    </div>
+</body>
+<script src="../iife/index.js"></script>
+<script>
+    let container = document.getElementsByClassName("container")[0];
+    let wrap = document.getElementsByClassName("wrap")[0];
+    this.dragula = DragList([container, wrap], { isCopy: true });
+    this.dragula.on("dropstart", (currentNode, source, sibling) => {
+    //   if (...) {
+    //     return false;
+    //   }
+      console.log("currentNode, source, sibling", currentNode, source, sibling);
+    });
+    this.dragula.on("drop", (currentNode, target, source, sibling) => {
+      console.log("currentNode, target, source, sibling", currentNode, target, source, sibling);
+    });
+    this.dragula.on("droping", (currentNode, pointNode) => {
+      console.log("currentNode, pointNode", currentNode, pointNode);
+    //   if (...) {
+    //     return false;
+    //   }
+    });
+</script>
+</html>

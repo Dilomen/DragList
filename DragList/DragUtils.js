@@ -48,12 +48,7 @@ export function getSite(e, eventName) {
  */
 export function getElementSite(ele) {
   let _oDivObj = ele.getBoundingClientRect();
-  let marginLeft = parseFloat(ele.style.marginLeft || 0);
-  let marginTop = parseFloat(ele.style.marginTop || 0);
-  let x = _oDivObj.x
-  let y = _oDivObj.y
-  let newObj = { width: _oDivObj.width, height: _oDivObj.width, x, y };
-  return newObj;
+  return _oDivObj;
 }
 
 /**
