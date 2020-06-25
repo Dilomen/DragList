@@ -49,7 +49,7 @@ this.dragula.on("dropstart", (currentNode, source, sibling) => {
 按下的元素 currentNode 和移动中鼠标下的元素 pointNode
 
 ```js
-this.dragula.on("drop", (currentNode, pointNode) => {
+this.dragula.on("droping", (currentNode, pointNode) => {
     if(...) {
         // 可以通过返回false来禁止默认的行为
         return false
